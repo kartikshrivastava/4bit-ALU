@@ -1,0 +1,31 @@
+module ALU_4bit_tb;
+
+reg [3:0] A, B;
+reg [2:0] opcode;
+wire [3:0] Result;
+
+ALU_4bit uut (
+    .A(A),
+    .B(B),
+    .opcode(opcode),
+    .Result(Result)
+);
+
+initial begin
+    $display("Opcode | A | B | Result");
+    
+    A = 4; B = 2;
+
+    opcode = 3'b000; #10; $display("ADD     | %d | %d | %d", A, B, Result);
+    opcode = 3'b001; #10; $display("SUB     | %d | %d | %d", A, B, Result);
+    opcode = 3'b010; #10; $display("AND     | %d | %d | %d", A, B, Result);
+    opcode = 3'b011; #10; $display("OR      | %d | %d | %d", A, B, Result);
+    opcode = 3'b100; #10; $display("NOT A   | %d | %d | %d", A, B, Result);
+    opcode = 3'b101; #10; $display("XOR     | %d | %d | %d", A, B, Result);
+    opcode = 3'b110; #10; $display("RSHIFT  | %d | %d | %d", A, B, Result);
+    opcode = 3'b111; #10; $display("LSHIFT  | %d | %d | %d", A, B, Result);
+
+    $finish;
+end
+
+endmodule
